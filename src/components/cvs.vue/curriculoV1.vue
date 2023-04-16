@@ -1,6 +1,5 @@
 <template>
   <v-row class="pa-0" >
-
     <v-col  cols="2" class="pa-0 lista my-0 " min-heigth="100%">
     </v-col>
     <v-col cols="9" class="mt-1 text-left ">
