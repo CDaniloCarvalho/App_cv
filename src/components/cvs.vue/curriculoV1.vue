@@ -3,7 +3,7 @@
 
     <v-col  cols="2" class="pa-0 lista my-0 " min-heigth="100%">
     </v-col>
-    <v-col cols="9" class="mt-6 text-left ">
+    <v-col cols="9" class="mt-2 text-left ">
       <v-row class="ma-4">
 
         <v-col cols="12" class="pa-0 ">
@@ -11,7 +11,7 @@
           <span><strong> {{ dadosCv.areaAtuacao.toUpperCase() }} </strong></span>
         </v-col>
 
-        <v-col cols="12" class="mt-2">
+        <v-col cols="12" class="mt-1">
           <h3  class="pa-0"> Contato </h3> 
           <span class="pa-0 d-block">
             <v-icon class="icons">mdi-email</v-icon>
@@ -48,11 +48,11 @@
           <template v-for="item in dadosCv.educacao" :key="item">
             <p><strong>Curso:</strong> {{ item.escolaridade }}</p>  
             <p><strong>Instituicao</strong> {{ item.instituicao }}</p>  
-            <p><strong>Período:</strong> {{ item.inicio }} até {{ item.termino }}</p>  
+            <p class="mb-4"><strong>Período:</strong> {{ item.inicio }} até {{ item.termino }}</p>  
           </template>
         </v-col>
 
-        <v-col cols="12" class="py-0 mt-5">
+        <v-col cols="12" class="py-0 mt-2">
           <h3> Habilidades </h3>
             <p>{{ dadosCv.habilidades }}</p>  
         </v-col>

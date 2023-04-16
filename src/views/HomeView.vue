@@ -1,32 +1,153 @@
 <template>
-  <div class="container">
-    <div class="mb-3">
-      <v-btn color="success" @click="generatePDF">Gerar PDF</v-btn>
+  <div class="container rounded py-5 px-5">
+    <div class="mb-3 ">
+      <v-btn  v-if="templateA || templateB" class="mx-2" color="success" @click="generatePDF">Gerar PDF</v-btn>
+      <v-btn class="mx-2" color="grey" @click="modeloA()">Modelo 1</v-btn>
+      <v-btn class="mx-2" color="grey" @click="modeloB()">Modelo 2</v-btn>
     </div>
     <v-row>
-
       <v-col :md="8" :sm="11" class="mx-auto" min-heigth="100%">
-        <div class="cv-template" ref="pdfContent">
+        <div  v-if="templateA || templateB" class="cv-template" ref="pdfContent">
           <curriculoV1
+            v-if="templateA"
           :dadosCv="dadosCv"
           >
           </curriculoV1>
         </div>
       </v-col>
     </v-row>
+
+    <v-row v-if="!templateA && !templateB" class="mb-4 pa-12 text-black">
+
+      <v-col cols="3" class="py-0">
+        <v-text-field
+          v-model="dadosCv.nome"
+          label="nome"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+
+      <v-col cols="3" class="py-0">
+        <v-text-field
+          v-model="dadosCv.areaAtuacao"
+          label="areaAtuacao"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+
+      <v-col cols="3" class="py-0">
+        <v-text-field
+          v-model="dadosCv.contato.email"
+          label="email"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+
+      <v-col cols="3" class="py-0">
+        <v-text-field
+          v-model="dadosCv.contato.telefone"
+          label="telefone"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+
+      <v-col cols="3" class="py-0">
+        <v-text-field
+          v-model="dadosCv.endereco.rua"
+          label="rua"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+
+      <v-col cols="2" class="py-0" >
+        <v-text-field
+          v-model="dadosCv.endereco.numero"
+          label="numero"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+
+      <v-col cols="3" class="py-0">
+        <v-text-field
+          v-model="dadosCv.endereco.bairro"
+          label="bairro"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+
+      <v-col cols="2" class="py-0">
+        <v-text-field
+          v-model="dadosCv.endereco.cidade"
+          label="cidade"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+
+      <v-col cols="2" class="py-0">
+        <v-text-field
+          v-model="dadosCv.endereco.estado"
+          label="estado"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+
+      <v-col cols="12" class="py-0">
+        <v-textarea
+        v-model="dadosCv.objetivo"
+          label="objetivo"
+          variant="outlined"
+          rows="2"
+          hint="Max 350 caracteres"
+          :counter="350"
+          maxlength="350"
+          ></v-textarea>
+      </v-col>
+      <v-col cols="12" class="py-0">
+        <v-row class="mx-auto">
+          <v-col class="mx-auto" cols="6" v-for="experiencia in dadosCv.experiencias" :key="experiencia.identificacao">
+            <v-text-field v-model="experiencia.cargo" label="Cargo" variant="outlined"></v-text-field>
+            <v-text-field v-model="experiencia.empresa" label="Empresa" variant="outlined"></v-text-field>
+            <v-text-field v-model="experiencia.entrada" label="Entrada" variant="outlined"></v-text-field>
+            <v-text-field v-model="experiencia.saida" label="Saída" variant="outlined"></v-text-field>
+            <v-text-field v-model="experiencia.responsabilidades" label="Responsabilidades" variant="outlined"></v-text-field>
+          </v-col>
+        </v-row>
+      </v-col>
+
+      <v-col cols="12" class="py-0">
+        <v-row class="mx-auto">
+          <v-col class="mx-auto" cols="6" v-for="item in dadosCv.educacao" :key="item.identificacao">
+            <v-text-field v-model="item.escolaridade" label="escolaridade" variant="outlined"></v-text-field>
+            <v-text-field v-model="item.instituicao" label="instituicao" variant="outlined"></v-text-field>
+            <v-text-field v-model="item.inicio" label="inicio" variant="outlined"></v-text-field>
+            <v-text-field v-model="item.termino" label="termino" variant="outlined"></v-text-field>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="12" class="py-0">
+        <v-text-field
+          v-model="dadosCv.habilidades"
+          label="habilidades"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+    </v-row>
   </div>
 </template>
-
 
 <script>
 import html2pdf from 'html2pdf.js';
 import curriculoV1 from '@/components/cvs.vue/curriculoV1.vue';
 
 export default {
-  components: { curriculoV1 },
+  components: { 
+    curriculoV1 
+  },
 
   data() {
     return {
+      templateA: false,
+      templateB: false,
       dadosCv: {
         nome: "Leonardo	Cavalcanti",
         areaAtuacao: "Desenvolvedor",
@@ -65,8 +186,16 @@ export default {
             identificacao: 1,
             escolaridade: "Bacharel em Ciência da Computação",
             instituicao: "Universidade de XYZ",
+            inicio: "Set 2018",
+            termino: "maio de 2020",
+            descrição: "Graduado com distinção",
+          },
+          {
+            identificacao: 1,
+            escolaridade: "Bacharel em Ciência da Computação",
+            instituicao: "Universidade de XYZ",
             inicio: "Set 2014",
-            termino: "maio de 2018",
+            termino: "maio de 2017",
             descrição: "Graduado com distinção",
           },
         ],
@@ -89,16 +218,31 @@ export default {
 
       // Converter o HTML em PDF
       html2pdf()
-        .set(options)
-        .from(pdfContent)
-        .save();
+      .set(options)
+      .from(pdfContent)
+      .save();
+
+      this.templateB = false
+      this.templateA = false
+    },
+
+    modeloA(){
+      this.templateA =  !this.templateA
+      this.templateB = false
+    },
+
+    modeloB(){
+      this.templateB = !this.templateB
+      this.templateA = false
     }
-  }
+  },
+
+
 }
 </script>
 
-
 <style>
+@import '~vuetify/dist/vuetify.min.css';
 
   .cv-template {
     background-color: white;
@@ -110,14 +254,17 @@ export default {
     overflow: auto;
   }
 
+  .container{
+    background-color: #ffffff;
+    height: auto;
+    margin:0 50px;
+    min-height: 90vh;
+  }
+
   @media (max-width: 400px) {
     .container{
       overflow: auto;
     }
   }
-  
-  
+    
 </style>
-<!-- .container{
-  padding: 20px 300px;
-} -->

@@ -38,6 +38,7 @@ export default {
   height: 100%;
   min-height: 100vh;
   padding: 0;
+  padding-bottom: 10px;
   margin: 0;
 }
 
@@ -46,7 +47,7 @@ nav {
   justify-items: end;
   border-bottom: solid rgba(0, 0, 0, 0.205) 1px;
   margin-bottom: 10px;
-  background-color: #b4b4b53e;
+  background-color: #343563da;
   
   @media (max-width: 600px) {
     display: block; 
@@ -62,7 +63,7 @@ nav {
     
     &.router-link-exact-active {
     color: #f1f3f4;
-      background-color: #8e8e8e81;
+    background-color: #363767da;
     }
   }
 
@@ -71,15 +72,19 @@ nav {
 .menu {
   padding: 15px 70px;
   border: solid rgba(0, 0, 0, 0.174) 1px;
-  background-color: #b4b4b53e;
  
   @media (max-width: 600px) {
     display: block; 
     width: 100%; 
     padding: 15px; 
     border: none; 
-    background-color: #b4b4b53e; 
+    background-color: #343563da; 
   }
+}
+
+.menu:hover{
+  background-color: #292a56da;
+  color: rgb(163, 161, 161);
 }
 
 .menuResponsivo {
