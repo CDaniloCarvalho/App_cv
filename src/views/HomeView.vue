@@ -1,24 +1,50 @@
 <template>
   <div class="container rounded py-5 px-5">
-    <div class="mb-3 ">
-      <v-btn  v-if="templateA || templateB" class="mx-2" color="success" @click="generatePDF">Gerar PDF</v-btn>
-      <v-btn class="mx-2" color="grey" @click="modeloA()">Modelo 1</v-btn>
-      <v-btn class="mx-2" color="grey" @click="modeloB()">Modelo 2</v-btn>
-    </div>
-    <v-row>
-      <v-col :md="8" :sm="11" class="mx-auto" min-heigth="100%">
-        <div  v-if="templateA || templateB" class="cv-template" ref="pdfContent">
-          <curriculoV1
-            v-if="templateA"
-          :dadosCv="dadosCv"
-          >
-          </curriculoV1>
+
+    <v-dialog
+      v-model="dialog"
+      max-width="900px"
+      class="px-0 py-0"
+    >
+      <template v-slot:activator="{ props }">
+        <div v-bind="props" class="mx-2 py-2 text-black cursor-pointer visualizar" color="grey" @click="modeloA()"> 
+          <v-icon class="icons">mdi-magnify-plus-outline</v-icon> Pré-visualizar
         </div>
-      </v-col>
-    </v-row>
+      </template>
+
+      <v-card>
+        <div v-bind="props" class="mx-2 py-2 text-black cursor-pointer close d-flex justify-end" color="grey" @click="close"> 
+          <v-icon class="icons fs-3">mdi-close-circle-outline </v-icon>
+        </div>
+        <v-row class="my-4 mx-auto py-0 text-center" v-if="dialog">
+          <v-col class="mx-auto py-0">
+            <v-btn  v-if="templateA || templateB" class=" mb-1 " color="success" @click="generatePDF">Gerar PDF</v-btn>
+          </v-col>
+          <v-col class="mx-auto py-0">
+            <v-btn class=" mb-1 " color="grey" @click="modeloA()">Modelo 1</v-btn>
+          </v-col>
+          <v-col class="mx-auto py-0">
+            <v-btn class=" mb-1 " color="grey" @click="modeloB()">Modelo 2</v-btn>
+          </v-col>
+        </v-row>
+
+        <v-row >
+          <v-col :md="11" :sm="11" class="mx-auto py-4" min-heigth="100%">
+            <div  v-if="templateA || templateB" class="cv-template" ref="pdfContent">
+              <curriculoV1
+                v-if="templateA"
+              :dadosCv="dadosCv"
+              >
+              </curriculoV1>
+            </div>
+          </v-col>
+        </v-row>
+
+      </v-card>
+    </v-dialog>
 
     <v-row v-if="!templateA && !templateB" class="mb-4 pa-12 text-black">
-
+      <v-col cols="12" class="py-0 mb-8"><h2>Preencha os dados para gerar o seu cv</h2></v-col>
       <v-col cols="3" class="py-0">
         <v-text-field
           v-model="dadosCv.nome"
@@ -92,19 +118,31 @@
       </v-col>
 
       <v-col cols="12" class="py-0">
-        <v-textarea
-        v-model="dadosCv.objetivo"
+        <v-textarea 
+          v-model="dadosCv.objetivo"
           label="objetivo"
           variant="outlined"
-          rows="2"
+          rows="3"
           hint="Max 350 caracteres"
           :counter="350"
           maxlength="350"
           ></v-textarea>
       </v-col>
+
       <v-col cols="12" class="py-0">
-        <v-row class="mx-auto">
-          <v-col class="mx-auto" cols="6" v-for="experiencia in dadosCv.experiencias" :key="experiencia.identificacao">
+        <v-text-field
+          :counter="60"
+          maxlength="60"
+          rows="1"
+          v-model="dadosCv.habilidades"
+          label="habilidades"
+          variant="outlined"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" class="py-0"><h2>Experiências</h2></v-col>
+      <v-col cols="12" class="py-0 mt-4">
+        <v-row class="mx-auto px-0" v-for="experiencia in dadosCv.experiencias" :key="experiencia.identificacao">
+          <v-col class="mx-auto " cols="12">
             <v-text-field v-model="experiencia.cargo" label="Cargo" variant="outlined"></v-text-field>
             <v-text-field v-model="experiencia.empresa" label="Empresa" variant="outlined"></v-text-field>
             <v-text-field v-model="experiencia.entrada" label="Entrada" variant="outlined"></v-text-field>
@@ -113,7 +151,7 @@
           </v-col>
         </v-row>
       </v-col>
-
+      <v-col cols="12" class="py-0 mb-8"><h2>Escolaridade</h2></v-col>
       <v-col cols="12" class="py-0">
         <v-row class="mx-auto">
           <v-col class="mx-auto" cols="6" v-for="item in dadosCv.educacao" :key="item.identificacao">
@@ -123,13 +161,6 @@
             <v-text-field v-model="item.termino" label="termino" variant="outlined"></v-text-field>
           </v-col>
         </v-row>
-      </v-col>
-      <v-col cols="12" class="py-0">
-        <v-text-field
-          v-model="dadosCv.habilidades"
-          label="habilidades"
-          variant="outlined"
-        ></v-text-field>
       </v-col>
     </v-row>
   </div>
@@ -146,6 +177,7 @@ export default {
 
   data() {
     return {
+      dialog: false,
       templateA: false,
       templateB: false,
       dadosCv: {
@@ -226,17 +258,22 @@ export default {
       this.templateA = false
     },
 
+    close(){
+      this.templateB = false
+      this.templateA = false
+      this.dialog = false
+    },
+
     modeloA(){
-      this.templateA =  !this.templateA
+      this.templateA =  true
       this.templateB = false
     },
 
     modeloB(){
-      this.templateB = !this.templateB
+      this.templateB = true
       this.templateA = false
     }
   },
-
 
 }
 </script>
@@ -259,6 +296,23 @@ export default {
     height: auto;
     margin:0 50px;
     min-height: 90vh;
+  }
+
+  .cursor-pointer{
+    cursor: pointer;
+  }
+  
+  .visualizar:hover{
+    font-size: 18px;
+    color:rgb(113, 2, 2) ;
+  }
+
+  .close{
+    font-size: 30px;
+  }
+
+  .icons:hover{
+    color: red;
   }
 
   @media (max-width: 400px) {
