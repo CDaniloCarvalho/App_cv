@@ -7,7 +7,7 @@
       class="px-0 py-0"
     >
       <template v-slot:activator="{ props }">
-        <div v-bind="props" class="mx-2 py-2 text-black cursor-pointer visualizar" color="grey" @click="modeloA()"> 
+        <div v-bind="props" class="mx-2 mb-2 py-2 text-black cursor-pointer visualizar" color="grey" @click="modeloA()"> 
           <v-icon class="icons">mdi-magnify-plus-outline</v-icon> Pré-visualizar
         </div>
       </template>
@@ -16,7 +16,7 @@
         <div v-bind="props" class="mx-2 py-2 text-black cursor-pointer close d-flex justify-end" color="grey" @click="close"> 
           <v-icon class="icons fs-3">mdi-close-circle-outline </v-icon>
         </div>
-        <v-row class="my-4 mx-auto py-0 text-center" v-if="dialog">
+        <v-row class="mx-auto py-0 text-center" v-if="dialog">
           <v-col class="mx-auto py-0">
             <v-btn  v-if="templateA || templateB" class=" mb-1 " color="success" @click="generatePDF">Gerar PDF</v-btn>
           </v-col>
@@ -33,9 +33,14 @@
             <div  v-if="templateA || templateB" class="cv-template" ref="pdfContent">
               <curriculoV1
                 v-if="templateA"
-              :dadosCv="dadosCv"
+                :dadosCv="dadosCv"
               >
               </curriculoV1>
+              <curriculoV2
+                v-if="templateB"
+                :dadosCv="dadosCv"
+              >
+              </curriculoV2>
             </div>
           </v-col>
         </v-row>
@@ -44,8 +49,8 @@
     </v-dialog>
 
     <v-row v-if="!templateA && !templateB" class="mb-4 pa-12 text-black">
-      <v-col cols="12" class="py-0 mb-8"><h2>Preencha os dados para gerar o seu cv</h2></v-col>
-      <v-col cols="3" class="py-0">
+      <v-col md="12" class="py-0 mb-8"><h2>Preencha os dados para gerar o seu cv</h2></v-col>
+      <v-col cols="12" :md="3" :sm="12" class="py-0">
         <v-text-field
           v-model="dadosCv.nome"
           label="nome"
@@ -53,7 +58,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="3" class="py-0">
+      <v-col cols="12" md="3" :sm="12" class="py-0">
         <v-text-field
           v-model="dadosCv.areaAtuacao"
           label="areaAtuacao"
@@ -61,7 +66,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="3" class="py-0">
+      <v-col cols="12" md="3" :sm="12"  class="py-0">
         <v-text-field
           v-model="dadosCv.contato.email"
           label="email"
@@ -69,7 +74,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="3" class="py-0">
+      <v-col cols="12" md="3" :sm="12"  class="py-0">
         <v-text-field
           v-model="dadosCv.contato.telefone"
           label="telefone"
@@ -77,7 +82,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="3" class="py-0">
+      <v-col cols="12" md="3" :sm="12"  class="py-0">
         <v-text-field
           v-model="dadosCv.endereco.rua"
           label="rua"
@@ -85,7 +90,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="2" class="py-0" >
+      <v-col cols="12" md="2" :sm="12"  class="py-0" >
         <v-text-field
           v-model="dadosCv.endereco.numero"
           label="numero"
@@ -93,7 +98,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="3" class="py-0">
+      <v-col cols="12" md="3" :sm="12"  class="py-0">
         <v-text-field
           v-model="dadosCv.endereco.bairro"
           label="bairro"
@@ -101,7 +106,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="2" class="py-0">
+      <v-col cols="12" md="2" :sm="12"  class="py-0">
         <v-text-field
           v-model="dadosCv.endereco.cidade"
           label="cidade"
@@ -109,7 +114,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="2" class="py-0">
+      <v-col cols="12" md="2" :sm="12"  class="py-0">
         <v-text-field
           v-model="dadosCv.endereco.estado"
           label="estado"
@@ -117,7 +122,7 @@
         ></v-text-field>
       </v-col>
 
-      <v-col cols="12" class="py-0">
+      <v-col cols="12" md="12" :sm="12" class="py-0">
         <v-textarea 
           v-model="dadosCv.objetivo"
           label="objetivo"
@@ -129,7 +134,7 @@
           ></v-textarea>
       </v-col>
 
-      <v-col cols="12" class="py-0">
+      <v-col cols="12" md="12" :sm="12" class="py-0">
         <v-text-field
           :counter="60"
           maxlength="60"
@@ -139,10 +144,10 @@
           variant="outlined"
         ></v-text-field>
       </v-col>
-      <v-col cols="12" class="py-0"><h2>Experiências</h2></v-col>
-      <v-col cols="12" class="py-0 mt-4">
+      <v-col cols="12" md="12" :sm="12"  class="py-0"><h2>Experiências</h2></v-col>
+      <v-col cols="12" md="12" :sm="12"  class="py-0 mt-4">
         <v-row class="mx-auto px-0" v-for="experiencia in dadosCv.experiencias" :key="experiencia.identificacao">
-          <v-col class="mx-auto " cols="12">
+          <v-col class="mx-auto " md="12">
             <v-text-field v-model="experiencia.cargo" label="Cargo" variant="outlined"></v-text-field>
             <v-text-field v-model="experiencia.empresa" label="Empresa" variant="outlined"></v-text-field>
             <v-text-field v-model="experiencia.entrada" label="Entrada" variant="outlined"></v-text-field>
@@ -151,10 +156,10 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="12" class="py-0 mb-8"><h2>Escolaridade</h2></v-col>
-      <v-col cols="12" class="py-0">
+      <v-col cols="12" md="12" :sm="12"  class="py-0 mb-8"><h2>Escolaridade</h2></v-col>
+      <v-col cols="12" md="12" :sm="12"  class="py-0">
         <v-row class="mx-auto">
-          <v-col class="mx-auto" cols="6" v-for="item in dadosCv.educacao" :key="item.identificacao">
+          <v-col class="mx-auto" md="6" :sm="12" v-for="item in dadosCv.educacao" :key="item.identificacao">
             <v-text-field v-model="item.escolaridade" label="escolaridade" variant="outlined"></v-text-field>
             <v-text-field v-model="item.instituicao" label="instituicao" variant="outlined"></v-text-field>
             <v-text-field v-model="item.inicio" label="inicio" variant="outlined"></v-text-field>
@@ -169,10 +174,12 @@
 <script>
 import html2pdf from 'html2pdf.js';
 import curriculoV1 from '@/components/cvs.vue/curriculoV1.vue';
+import curriculoV2 from '@/components/cvs.vue/curriculoV2.vue';
 
 export default {
   components: { 
-    curriculoV1 
+    curriculoV1,
+    curriculoV2
   },
 
   data() {
@@ -256,6 +263,7 @@ export default {
 
       this.templateB = false
       this.templateA = false
+      this.dialog = false
     },
 
     close(){
