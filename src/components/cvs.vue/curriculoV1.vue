@@ -1,16 +1,16 @@
 <template>
   <v-row class="pa-0" >
-    <v-col  cols="2" class="pa-0 lista my-0 " min-heigth="100%">
+    <v-col  cols="2" class="pa-0 lista my-0" min-heigth="100%">
     </v-col>
-    <v-col cols="9" class="mt-1 text-left ">
-      <v-row class="ma-4">
+    <v-col cols="9" class="text-left ">
+      <v-row class="ma-2">
 
-        <v-col cols="12" class="pa-0 ">
-          <h1 class="pa-0"> {{ dadosCv.nome }} </h1>
+        <v-col cols="12" class="pa-0 ma-2">
+          <h1 class="pa-0 py-0"> {{ dadosCv.nome.toUpperCase() }} </h1>
           <span><strong> {{ dadosCv.areaAtuacao.toUpperCase() }} </strong></span>
         </v-col>
 
-        <v-col cols="12" class="mt-1">
+        <v-col cols="12" >
           <h3  class="pa-0"> Contato </h3> 
           <span class="pa-0 d-block">
             <v-icon class="icons">mdi-email</v-icon>
@@ -33,12 +33,12 @@
         </v-col>
 
         <v-col cols="12">
-          <h3> Experiências </h3>
+          <h3 > Experiências </h3>
           <template v-for="item in dadosCv.experiencias" :key="item">
-            <p><strong> Empresa: {{ item.empresa }}</strong></p>  
+            <p><strong> Empresa: </strong>{{ item.empresa }}</p>  
             <p><strong>Cargo:</strong> {{ item.cargo }}</p>  
             <p><strong>Período:</strong> {{ item.entrada }} até {{ item.saida }}</p>  
-            <p class="mb-4"><strong>Responsabilidades:</strong> {{ item.responsabilidades }}</p>  
+            <p class="mb-3"><strong>Responsabilidades:</strong> {{ item.responsabilidades }}</p>  
           </template>
         </v-col>
 
@@ -47,7 +47,7 @@
           <template v-for="item in dadosCv.educacao" :key="item">
             <p><strong>Curso:</strong> {{ item.escolaridade }}</p>  
             <p><strong>Instituicao</strong> {{ item.instituicao }}</p>  
-            <p class="mb-4"><strong>Período:</strong> {{ item.inicio }} até {{ item.termino }}</p>  
+            <p class="mb-3"><strong>Período:</strong> {{ item.inicio }} até {{ item.termino }}</p>  
           </template>
         </v-col>
 
@@ -78,7 +78,9 @@ export default {
 
   .lista{
     background-color: rgba(172, 171, 171, 0.521);
-    min-height: 1120px;
+    min-height: 1121px;
+    margin:0 3px;
+    
   }
   .icons{
     width: 20px;
