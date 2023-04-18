@@ -1,11 +1,11 @@
 <template>
   <v-row class="pa-0 cv2">
     <v-col
-      class="mt-2"
+      class="mt-9 d-flex justify-end"
       cols="5">
       <v-avatar
         size="220"
-        class="d-flex justify-start ma-15">
+        class="">
         <v-img
           height="220px"
           cover
@@ -16,7 +16,8 @@
 
     <v-col
       cols="7"
-      class="pa-0 mt-12 pt-15 text-end pe-15">
+      :height="90"
+      class="pa-0 mt-8 pt-15 text-end pe-15">
       <h2 class="pa-0 py-0">{{ dadosCv.nome.toUpperCase() }}</h2>
       <span class="pa-0">
         {{ dadosCv.endereco.rua }}{{ dadosCv.endereco.rua ? "," : "" }}
@@ -34,27 +35,27 @@
         <v-icon class="icons">mdi-email</v-icon>
       </span>
       <span class="pa-0 d-block">
-        {{ dadosCv.contato.telefone }}
-        <v-icon class="icons">mdi-phone-classic </v-icon>
+        {{ dadosCv.contato.telefone
+        }}<v-icon class="icons">mdi-phone-classic </v-icon>
       </span>
     </v-col>
 
     <v-col
-      cols="10"
-      class="pa-0 mx-2 mx-auto">
+      cols="9"
+      class="pa-0 mt-2 mx-auto">
       <h3>Objetivo</h3>
       <span> {{ dadosCv.areaAtuacao }} </span>
     </v-col>
 
     <v-col
-      cols="10"
+      cols="9"
       class="pa-0 ma-2 mx-auto">
       <h3>Objetivo</h3>
       <p>{{ dadosCv.objetivo }}</p>
     </v-col>
 
     <v-col
-      cols="10"
+      cols="9"
       class="pa-0 ma-2 mx-auto">
       <h3>Experiências</h3>
       <template
@@ -73,8 +74,8 @@
     </v-col>
 
     <v-col
-      cols="10"
-      class="pa-0 ma-2 mx-auto">
+      cols="9"
+      class="pa-0 mx-auto">
       <h3>Escolaridade</h3>
       <template
         v-for="item in dadosCv.educacao"
@@ -89,8 +90,8 @@
     </v-col>
 
     <v-col
-      cols="10"
-      class="pa-0 ma-2 mx-auto">
+      cols="9"
+      class="pa-0 mx-auto">
       <h3>Habilidades</h3>
       <p>{{ dadosCv.habilidades }}</p>
     </v-col>
