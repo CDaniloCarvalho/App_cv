@@ -1,5 +1,5 @@
 <template>
-  <v-row class="mb-4 pa-12 text-black">
+  <v-row class="mb-4 form text-black">
     <v-col
       md="12"
       class="py-0 mb-8">
@@ -451,3 +451,13 @@
     },
   };
 </script>
+
+<style>
+  .form {
+    padding: 0 50px;
+
+    @media (max-width: 600px) {
+      padding: 0 15px;
+    }
+  }
+</style>

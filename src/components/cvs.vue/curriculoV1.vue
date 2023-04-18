@@ -1,5 +1,5 @@
 <template>
-  <v-row class="pa-0">
+  <v-row class="cv1">
     <v-col
       cols="2"
       class="pa-0 lista my-0"
@@ -103,9 +103,20 @@
   @import "~vuetify/dist/vuetify.min.css";
 
   .lista {
-    background-color: rgba(172, 171, 171, 0.521);
-    min-height: 1121px;
     margin: 0 3px;
+  }
+
+  .cv1 {
+    background-image: url("../../assets/fundo_cv1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    min-height: 1120px;
   }
 
   .icons {
