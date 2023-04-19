@@ -87,13 +87,6 @@
         </p>
       </template>
     </v-col>
-
-    <v-col
-      cols="9"
-      class="pa-0 mx-auto">
-      <h3>Habilidades</h3>
-      <p>{{ dadosCv.habilidades }}</p>
-    </v-col>
   </v-row>
 </template>
 
@@ -111,6 +104,7 @@
   .lista {
     background-color: rgba(172, 171, 171, 0.521);
     min-height: 1121px;
+    height: 100%;
     margin: 0 3px;
   }
 
@@ -125,8 +119,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     width: 100%;
-    height: 100%;
-    min-height: 100vh;
+    min-height: 1120px;
     padding: 0;
     margin: 0;
   }

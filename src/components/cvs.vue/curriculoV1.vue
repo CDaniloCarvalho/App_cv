@@ -81,13 +81,6 @@
             </p>
           </template>
         </v-col>
-
-        <v-col
-          cols="12"
-          class="py-0 mt-2">
-          <h3 class="text-decoration-underline">Habilidades</h3>
-          <p>{{ dadosCv.habilidades }}</p>
-        </v-col>
       </v-row>
     </v-col>
   </v-row>
@@ -115,7 +108,6 @@
     background-position: center center;
     width: 100%;
     height: 100%;
-    min-height: 100vh;
     padding: 0;
     margin: 0;
     min-height: 1120px;
