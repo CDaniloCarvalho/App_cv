@@ -1,10 +1,35 @@
 <template>
   <v-row class="mb-4 form text-black">
     <v-col
-      md="12"
-      class="py-0 mb-8">
+      md="9"
+      class="py-0 pt-15">
       <h2>Preencha os dados para gerar o seu cv</h2>
     </v-col>
+
+    <v-col
+      cols="3"
+      class="py-0 mb-4">
+      <v-avatar
+        size="150"
+        for="file-upload"
+        class="imagem cursor-pointer d-flex justify-start"
+        @click="$refs.uploadInput.click()">
+        <div class="avatar-label">Adicionar uma imagem</div>
+        <v-img
+          height="150px"
+          cover
+          :src="dadosCv.foto"
+          class="foto"
+          alt="foto"></v-img>
+      </v-avatar>
+      <input
+        ref="uploadInput"
+        id="file-upload"
+        class="d-none file-uploads"
+        @change="listar"
+        type="file" />
+    </v-col>
+
     <v-col
       cols="12"
       :md="3"
@@ -382,6 +407,7 @@
             },
           ],
           habilidades: "HTML, CSS, JavaScript e Node.js",
+          foto: "../../assets/elon-musk-.jpg",
         },
       };
     },
@@ -393,6 +419,7 @@
     methods: {
       atualizarDados() {
         this.$emit("atualizarDados", this.dadosCv);
+        console.log(this.dadosCv.foto);
       },
 
       validarNumero(value) {
@@ -448,6 +475,19 @@
         }
         return true;
       },
+
+      listar(event) {
+        const files = event.target.files;
+        const file = files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64 = reader.result;
+          //this.dadosCv = this.dadosCv || {};
+          this.dadosCv.foto = base64;
+          console.log(this.dadosCv.foto);
+        };
+        reader.readAsDataURL(file);
+      },
     },
   };
 </script>
@@ -459,5 +499,27 @@
     @media (max-width: 600px) {
       padding: 0 15px;
     }
+  }
+
+  .imagem {
+    background-image: src("../../assets/elon-musk-.jpg");
+    height: 150px;
+  }
+
+  .foto:hover {
+    background-color: rgba(78, 78, 78, 0.26);
+  }
+
+  .foto {
+    background-color: rgba(78, 78, 78, 0.132);
+  }
+
+  .avatar-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 1.2rem;
   }
 </style>

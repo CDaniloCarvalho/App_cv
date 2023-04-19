@@ -9,11 +9,10 @@
         <v-img
           height="220px"
           cover
-          src="../../assets/elon-musk-.jpg"
+          :src="dadosCv.foto"
           alt="John"></v-img>
       </v-avatar>
     </v-col>
-
     <v-col
       cols="7"
       :height="90"
@@ -67,7 +66,7 @@
           <strong>Período:</strong> {{ item.entrada }}
           {{ item.entrada ? "até" : "" }} {{ item.saida }}
         </p>
-        <p class="mb-3">
+        <p class="mb-2">
           <strong>Responsabilidades:</strong> {{ item.responsabilidades }}
         </p>
       </template>
@@ -102,6 +101,12 @@
   export default {
     props: {
       dadosCv: Object,
+    },
+
+    data() {
+      return {
+        foto: "../../assets/elon-musk-.jpg",
+      };
     },
   };
 </script>

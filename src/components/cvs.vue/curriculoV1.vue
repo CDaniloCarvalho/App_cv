@@ -12,14 +12,16 @@
         <v-col
           cols="12"
           class="pa-0 ma-2">
-          <h1 class="pa-0 py-0">{{ dadosCv.nome.toUpperCase() }}</h1>
+          <h1 class="pa-0 py-0 text-decoration-underline">
+            {{ dadosCv.nome.toUpperCase() }}
+          </h1>
           <span
             ><strong> {{ dadosCv.areaAtuacao.toUpperCase() }} </strong></span
           >
         </v-col>
 
         <v-col cols="12">
-          <h3 class="pa-0">Contato</h3>
+          <h3 class="pa-0 text-decoration-underline">Contato</h3>
           <span class="pa-0 d-block">
             <v-icon class="icons">mdi-email</v-icon>
             <strong> E-mail: </strong>{{ dadosCv.contato.email }}
@@ -43,12 +45,12 @@
         </v-col>
 
         <v-col cols="12">
-          <h3>Objetivo</h3>
+          <h3 class="text-decoration-underline">Objetivo</h3>
           <p>{{ dadosCv.objetivo }}</p>
         </v-col>
 
         <v-col cols="12">
-          <h3>Experiências</h3>
+          <h3 class="text-decoration-underline">Experiências</h3>
           <template
             v-for="item in dadosCv.experiencias"
             :key="item">
@@ -67,7 +69,7 @@
         <v-col
           cols="12"
           class="py-0">
-          <h3>Escolaridade</h3>
+          <h3 class="text-decoration-underline">Escolaridade</h3>
           <template
             v-for="item in dadosCv.educacao"
             :key="item">
@@ -83,7 +85,7 @@
         <v-col
           cols="12"
           class="py-0 mt-2">
-          <h3>Habilidades</h3>
+          <h3 class="text-decoration-underline">Habilidades</h3>
           <p>{{ dadosCv.habilidades }}</p>
         </v-col>
       </v-row>

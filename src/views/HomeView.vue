@@ -170,7 +170,6 @@
       generatePDF() {
         this.loading = true;
         setTimeout(() => {
-          // Opções de configuração para a função html2pdf
           const options = {
             filename: `${this.dadosCv.nome}_cv.pdf`,
             html2canvas: {},
