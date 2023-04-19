@@ -2,23 +2,23 @@
   <v-row class="mb-4 form text-black">
     <v-col
       md="9"
-      class="py-0 pt-15">
-      <h2>Preencha os dados para gerar o seu cv</h2>
+      class="d-flex align-center">
+      <h2 class="mx-auto">Preencha os dados para gerar o seu cv</h2>
     </v-col>
 
     <v-col
       cols="3"
-      class="py-0 mb-4">
+      class="py-0 mb-6">
       <v-avatar
         size="150"
         for="file-upload"
-        class="imagem cursor-pointer d-flex justify-start"
+        class="cursor-pointer d-flex justify-start"
         @click="$refs.uploadInput.click()">
         <div class="avatar-label">Adicionar uma imagem</div>
         <v-img
           height="150px"
           cover
-          :src="dadosCv.foto"
+          :src="items.foto"
           class="foto"
           alt="foto"></v-img>
       </v-avatar>
@@ -38,7 +38,7 @@
       <v-text-field
         :counter="25"
         maxlength="25"
-        v-model="dadosCv.nome"
+        v-model="items.nome"
         @input="atualizarDados"
         label="nome"
         variant="outlined"></v-text-field>
@@ -48,11 +48,11 @@
       cols="12"
       md="3"
       :sm="12"
-      class="py-0">
+      class="pt-0">
       <v-text-field
         :counter="25"
         maxlength="25"
-        v-model="dadosCv.areaAtuacao"
+        v-model="items.areaAtuacao"
         @input="atualizarDados"
         label="areaAtuacao"
         variant="outlined"></v-text-field>
@@ -66,7 +66,7 @@
       <v-text-field
         :counter="30"
         maxlength="30"
-        v-model="dadosCv.contato.email"
+        v-model="items.contato.email"
         @input="atualizarDados"
         :rules="[validarEmail]"
         label="email"
@@ -79,7 +79,7 @@
       :sm="12"
       class="py-0">
       <v-text-field
-        v-model="dadosCv.contato.telefone"
+        v-model="items.contato.telefone"
         @change="atualizarDados"
         label="telefone"
         placeholder="Ex: (11) 96453-7363"
@@ -96,7 +96,7 @@
       <v-text-field
         :counter="30"
         maxlength="30"
-        v-model="dadosCv.endereco.rua"
+        v-model="items.endereco.rua"
         label="rua"
         @input="atualizarDados"
         variant="outlined"></v-text-field>
@@ -108,7 +108,7 @@
       :sm="12"
       class="py-0">
       <v-text-field
-        v-model="dadosCv.endereco.numero"
+        v-model="items.endereco.numero"
         maxlength="10"
         label="numero"
         @input="atualizarDados"
@@ -122,7 +122,7 @@
       :sm="12"
       class="py-0">
       <v-text-field
-        v-model="dadosCv.endereco.bairro"
+        v-model="items.endereco.bairro"
         @input="atualizarDados"
         :counter="20"
         maxlength="20"
@@ -136,7 +136,7 @@
       :sm="12"
       class="py-0">
       <v-text-field
-        v-model="dadosCv.endereco.cidade"
+        v-model="items.endereco.cidade"
         @input="atualizarDados"
         :counter="20"
         maxlength="20"
@@ -151,7 +151,7 @@
       class="py-0">
       <v-text-field
         @input="atualizarDados"
-        v-model="dadosCv.endereco.estado"
+        v-model="items.endereco.estado"
         maxlength="2"
         label="estado"
         variant="outlined"></v-text-field>
@@ -163,7 +163,7 @@
       :sm="12"
       class="py-0">
       <v-textarea
-        v-model="dadosCv.objetivo"
+        v-model="items.objetivo"
         @input="atualizarDados"
         label="objetivo"
         variant="outlined"
@@ -181,7 +181,7 @@
         :counter="50"
         maxlength="50"
         rows="1"
-        v-model="dadosCv.habilidades"
+        v-model="items.habilidades"
         @input="atualizarDados"
         label="habilidades"
         variant="outlined"></v-text-field>
@@ -200,7 +200,7 @@
       class="py-0 mt-4">
       <v-row
         class="px-0"
-        v-for="experiencia in dadosCv.experiencias"
+        v-for="experiencia in items.experiencias"
         :key="experiencia.identificacao">
         <v-col
           cols="12"
@@ -258,7 +258,7 @@
             :rules="[validarData(experiencia.saida)]"></v-text-field>
         </v-col>
         <v-col
-          class="mb-4"
+          class="pt-0"
           cols="12"
           :md="12">
           <v-textarea
@@ -286,7 +286,7 @@
       class="py-0">
       <v-row
         class="mx-auto"
-        v-for="item in dadosCv.educacao"
+        v-for="item in items.educacao"
         :key="item.identificacao">
         <v-col
           cols="12"
@@ -350,76 +350,23 @@
 
 <script>
   export default {
+    props: {
+      dadosCv: Object,
+    },
+
     data() {
       return {
-        dadosCv: {
-          nome: "Leonardo	Cavalcanti",
-          areaAtuacao: "Desenvolvedor",
-          objetivo:
-            "Sou um desenvolvedor apaixonado por tecnologia, com experiência em JavaScript, Vue.js, Node.js, HTML e CSS. Tenho como objetivo aplicar meu conhecimento e habilidades em projetos desafiadores, contribuindo para o desenvolvimento de soluções inovadoras e impactantes. Busco oportunidades que me permitam crescer profissionalmente e aprender",
-          contato: {
-            email: "dev@develop.com.br",
-            telefone: "(11) 94983-7353",
-          },
-          endereco: {
-            rua: "São joão",
-            numero: "1000",
-            bairro: "Centro",
-            cidade: "São paulo",
-            estado: "Sp",
-          },
-          experiencias: [
-            {
-              identificacao: 1,
-              cargo: "Desenvolvedor Full Stack",
-              empresa: "ABC",
-              entrada: "01/12/2020",
-              saida: "Presente",
-              responsabilidades:
-                "Site da empresa desenvolvido e mantido usando Vue.js e Node.js,Design responsivo implementado usando HTML/CSS, Integrado com várias APIs de terceiros para processamento de pagamentos e email marketing",
-            },
-            {
-              identificacao: 2,
-              cargo: "Desenvolvedor Júnior",
-              empresa: "XYZ",
-              entrada: "05/10/2018",
-              saida: "12/05/2019",
-              responsabilidades:
-                "Auxiliou desenvolvedores seniores em vários projetos Ferramentas internas desenvolvidas e mantidas usando JavaScript e Node.js",
-            },
-          ],
-          educacao: [
-            {
-              identificacao: 1,
-              escolaridade: "Bacharel em Ciência da Computação",
-              instituicao: "Universidade de XYZ",
-              inicio: "05/10/2015",
-              termino: "02/01/2019",
-              descrição: "Graduado com distinção",
-            },
-            {
-              identificacao: 2,
-              escolaridade: "Bacharel em Ciência da Computação",
-              instituicao: "Universidade de XYZ",
-              inicio: "10/10/2010",
-              termino: "15/08/2014",
-              descrição: "Graduado com distinção",
-            },
-          ],
-          habilidades: "HTML, CSS, JavaScript e Node.js",
-          foto: "../../assets/elon-musk-.jpg",
-        },
+        items: { ...this.dadosCv },
       };
     },
 
-    mounted() {
-      this.atualizarDados();
-    },
+    // mounted() {
+    //   this.atualizarDados();
+    // },
 
     methods: {
       atualizarDados() {
-        this.$emit("atualizarDados", this.dadosCv);
-        console.log(this.dadosCv.foto);
+        this.$emit("atualizarDados", this.items);
       },
 
       validarNumero(value) {
@@ -443,11 +390,11 @@
       },
 
       formatarTelefone() {
-        let telefone = this.dadosCv.contato.telefone;
+        let telefone = this.items.contato.telefone;
         telefone = telefone
           .replace(/\D+/g, "")
           .replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
-        this.dadosCv.contato.telefone = telefone;
+        this.items.contato.telefone = telefone;
       },
 
       validarEmail(value) {
@@ -482,9 +429,8 @@
         const reader = new FileReader();
         reader.onload = () => {
           const base64 = reader.result;
-          //this.dadosCv = this.dadosCv || {};
-          this.dadosCv.foto = base64;
-          console.log(this.dadosCv.foto);
+          //this.items = this.items || {};
+          this.items.foto = base64;
         };
         reader.readAsDataURL(file);
       },
@@ -499,11 +445,6 @@
     @media (max-width: 600px) {
       padding: 0 15px;
     }
-  }
-
-  .imagem {
-    background-image: src("../../assets/elon-musk-.jpg");
-    height: 150px;
   }
 
   .foto:hover {

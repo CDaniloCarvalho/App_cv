@@ -3,7 +3,7 @@
     v-if="!templateA && !templateB"
     class="container rounded py-4">
     <div
-      class="mx-5 mb-2 text-left py-2 cursor-pointer visualizar"
+      class="mx-5 text-left cursor-pointer visualizar"
       color="grey"
       @click="preVisualizar()">
       <v-icon class="icons">mdi-magnify-plus-outline</v-icon> Pré-visualizar
@@ -11,7 +11,8 @@
 
     <FormCv
       v-if="!templateA && !templateB"
-      @atualizarDados="atualizarDados" />
+      @atualizarDados="atualizarDados"
+      :dadosCv="dadosCv" />
   </div>
   <v-dialog
     v-model="dialog"
@@ -107,57 +108,61 @@
         templateA: false,
         templateB: false,
         dadosCv: {
-          nome: "",
-          areaAtuacao: "",
-          objetivo: "",
+          nome: "Leonardo	Cavalcanti",
+          areaAtuacao: "Desenvolvedor",
+          objetivo:
+            "Sou um desenvolvedor apaixonado por tecnologia, com experiência em JavaScript, Vue.js, Node.js, HTML e CSS. Tenho como objetivo aplicar meu conhecimento e habilidades em projetos desafiadores, contribuindo para o desenvolvimento de soluções inovadoras e impactantes. Busco oportunidades que me permitam crescer profissionalmente e aprender",
           contato: {
-            email: "",
-            telefone: "",
+            email: "dev@develop.com.br",
+            telefone: "(11) 94983-7353",
           },
           endereco: {
-            rua: "",
-            numero: "",
-            bairro: "",
-            cidade: "",
-            estado: "",
+            rua: "São joão",
+            numero: "1000",
+            bairro: "Centro",
+            cidade: "São paulo",
+            estado: "Sp",
           },
           experiencias: [
             {
               identificacao: 1,
-              cargo: "",
-              empresa: "",
-              entrada: "",
-              saida: "",
-              responsabilidades: "",
+              cargo: "Desenvolvedor Full Stack",
+              empresa: "ABC",
+              entrada: "01/12/2020",
+              saida: "Presente",
+              responsabilidades:
+                "Site da empresa desenvolvido e mantido usando Vue.js e Node.js,Design responsivo implementado usando HTML/CSS, Integrado com várias APIs de terceiros para processamento de pagamentos e email marketing",
             },
             {
               identificacao: 2,
-              cargo: "",
-              empresa: "",
-              entrada: "",
-              saida: "",
-              responsabilidades: "",
+              cargo: "Desenvolvedor Júnior",
+              empresa: "XYZ",
+              entrada: "05/10/2018",
+              saida: "12/05/2019",
+              responsabilidades:
+                "Auxiliou desenvolvedores seniores em vários projetos Ferramentas internas desenvolvidas e mantidas usando JavaScript e Node.js",
             },
           ],
           educacao: [
             {
               identificacao: 1,
-              escolaridade: "",
-              instituicao: "",
-              inicio: "",
-              termino: "",
-              descrição: "",
+              escolaridade: "Bacharel em Ciência da Computação",
+              instituicao: "Universidade de XYZ",
+              inicio: "05/10/2015",
+              termino: "02/01/2019",
+              descrição: "Graduado com distinção",
             },
             {
               identificacao: 2,
-              escolaridade: "",
-              instituicao: "",
-              inicio: "",
-              termino: "",
-              descrição: "",
+              escolaridade: "Bacharel em Ciência da Computação",
+              instituicao: "Universidade de XYZ",
+              inicio: "10/10/2010",
+              termino: "15/08/2014",
+              descrição: "Graduado com distinção",
             },
           ],
-          habilidades: "",
+          habilidades: "HTML, CSS, JavaScript e Node.js",
+          foto: "",
         },
       };
     },

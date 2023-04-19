@@ -102,12 +102,6 @@
     props: {
       dadosCv: Object,
     },
-
-    data() {
-      return {
-        foto: "../../assets/elon-musk-.jpg",
-      };
-    },
   };
 </script>
 
