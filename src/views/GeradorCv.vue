@@ -117,10 +117,10 @@
             telefone: "(11) 94983-7353",
           },
           endereco: {
-            rua: "tenente sebastião pinheiro da silva",
-            numero: "1000000000",
-            bairro: "Fazenda itajuibe",
-            cidade: "ferraz e vasconcelos",
+            rua: "São joão",
+            numero: "10000",
+            bairro: "Centro",
+            cidade: "São paulo",
             estado: "Sp",
           },
           experiencias: [
