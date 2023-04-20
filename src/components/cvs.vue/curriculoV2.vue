@@ -27,15 +27,15 @@
         {{ dadosCv.endereco.cidade }}
         {{ dadosCv.endereco.cidade ? "-" : "" }}
         {{ dadosCv.endereco.estado }}
-        <v-icon class="icons">mdi-map-marker</v-icon>
+        <v-icon class="icons">mdi-map-marker-radius-outline </v-icon>
       </span>
-      <span class="pa-0 d-block">
+      <span class="pa-0 d-block mt-2">
         {{ dadosCv.contato.email }}
-        <v-icon class="icons">mdi-email</v-icon>
+        <v-icon class="icons">mdi-email-outline </v-icon>
       </span>
-      <span class="pa-0 d-block">
-        {{ dadosCv.contato.telefone
-        }}<v-icon class="icons">mdi-phone-classic </v-icon>
+      <span class="pa-0 d-block mt-2">
+        {{ dadosCv.contato.telefone }}
+        <v-icon class="icons">mdi-whatsapp </v-icon>
       </span>
     </v-col>
 
@@ -49,7 +49,7 @@
     <v-col
       cols="9"
       class="pa-0 ma-2 mx-auto">
-      <h3>Objetivo</h3>
+      <h3>Qualificação Profissional</h3>
       <p>{{ dadosCv.objetivo }}</p>
     </v-col>
 
@@ -87,13 +87,6 @@
         </p>
       </template>
     </v-col>
-
-    <v-col
-      cols="9"
-      class="pa-0 mx-auto">
-      <h3>Habilidades</h3>
-      <p>{{ dadosCv.habilidades }}</p>
-    </v-col>
   </v-row>
 </template>
 
@@ -111,6 +104,7 @@
   .lista {
     background-color: rgba(172, 171, 171, 0.521);
     min-height: 1121px;
+    height: 100%;
     margin: 0 3px;
   }
 
@@ -125,8 +119,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     width: 100%;
-    height: 100%;
-    min-height: 100vh;
+    min-height: 1120px;
     padding: 0;
     margin: 0;
   }

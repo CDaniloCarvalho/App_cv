@@ -2,17 +2,19 @@
   <v-row class="mb-4 form text-black">
     <v-col
       md="9"
-      class="d-flex align-center">
+      cols="12"
+      class="d-flex align-center mt-2">
       <h2 class="mx-auto">Preencha os dados para gerar o seu cv</h2>
     </v-col>
 
     <v-col
-      cols="3"
+      cols="12"
+      :md="3"
       class="py-0 mb-6">
       <v-avatar
         size="150"
         for="file-upload"
-        class="cursor-pointer d-flex justify-start"
+        class="cursor-pointer d-flex justify-start mx-auto"
         @click="$refs.uploadInput.click()">
         <div class="avatar-label">Adicionar uma imagem</div>
         <v-img
@@ -26,6 +28,7 @@
         ref="uploadInput"
         id="file-upload"
         class="d-none file-uploads"
+        @input="atualizarDados"
         @change="listar"
         type="file" />
     </v-col>
@@ -36,11 +39,11 @@
       :sm="12"
       class="py-0">
       <v-text-field
-        :counter="25"
-        maxlength="25"
+        :counter="30"
+        maxlength="30"
         v-model="items.nome"
         @input="atualizarDados"
-        label="nome"
+        label="Nome"
         variant="outlined"></v-text-field>
     </v-col>
 
@@ -54,7 +57,7 @@
         maxlength="25"
         v-model="items.areaAtuacao"
         @input="atualizarDados"
-        label="areaAtuacao"
+        label="Área de Atuação"
         variant="outlined"></v-text-field>
     </v-col>
 
@@ -69,7 +72,7 @@
         v-model="items.contato.email"
         @input="atualizarDados"
         :rules="[validarEmail]"
-        label="email"
+        label="E-mail"
         variant="outlined"></v-text-field>
     </v-col>
 
@@ -81,7 +84,7 @@
       <v-text-field
         v-model="items.contato.telefone"
         @change="atualizarDados"
-        label="telefone"
+        label="Telefone"
         placeholder="Ex: (11) 96453-7363"
         :rules="[validarTelefone]"
         @input="formatarTelefone"
@@ -97,7 +100,7 @@
         :counter="30"
         maxlength="30"
         v-model="items.endereco.rua"
-        label="rua"
+        label="Rua"
         @input="atualizarDados"
         variant="outlined"></v-text-field>
     </v-col>
@@ -110,7 +113,7 @@
       <v-text-field
         v-model="items.endereco.numero"
         maxlength="10"
-        label="numero"
+        label="Numero"
         @input="atualizarDados"
         :rules="[validarNumero]"
         variant="outlined"></v-text-field>
@@ -124,9 +127,9 @@
       <v-text-field
         v-model="items.endereco.bairro"
         @input="atualizarDados"
-        :counter="20"
-        maxlength="20"
-        label="bairro"
+        :counter="30"
+        maxlength="30"
+        label="Bairro"
         variant="outlined"></v-text-field>
     </v-col>
 
@@ -138,9 +141,9 @@
       <v-text-field
         v-model="items.endereco.cidade"
         @input="atualizarDados"
-        :counter="20"
-        maxlength="20"
-        label="cidade"
+        :counter="30"
+        maxlength="30"
+        label="Cidade"
         variant="outlined"></v-text-field>
     </v-col>
 
@@ -153,7 +156,7 @@
         @input="atualizarDados"
         v-model="items.endereco.estado"
         maxlength="2"
-        label="estado"
+        label="Estado"
         variant="outlined"></v-text-field>
     </v-col>
 
@@ -165,27 +168,13 @@
       <v-textarea
         v-model="items.objetivo"
         @input="atualizarDados"
-        label="objetivo"
+        label="Objetivo"
         variant="outlined"
         rows="2"
         :counter="340"
         maxlength="340"></v-textarea>
     </v-col>
 
-    <v-col
-      cols="12"
-      md="12"
-      :sm="12"
-      class="py-0">
-      <v-text-field
-        :counter="50"
-        maxlength="50"
-        rows="1"
-        v-model="items.habilidades"
-        @input="atualizarDados"
-        label="habilidades"
-        variant="outlined"></v-text-field>
-    </v-col>
     <v-col
       cols="12"
       md="12"
@@ -200,7 +189,7 @@
       class="py-0 mt-4">
       <v-row
         class="px-0"
-        v-for="experiencia in items.experiencias"
+        v-for="(experiencia, index) in items.experiencias"
         :key="experiencia.identificacao">
         <v-col
           cols="12"
@@ -210,7 +199,15 @@
           <h3>{{ `Empresa ${experiencia.identificacao}` }}</h3>
         </v-col>
         <v-col
-          class=" "
+          class="py-0"
+          cols="12">
+          <v-checkbox
+            class="py-0 d-flex justify-end ma-0"
+            label="Atual"
+            @change="empresaAtual(index)"></v-checkbox>
+        </v-col>
+        <v-col
+          class="py-0"
           cols="12"
           :md="3">
           <v-text-field
@@ -222,7 +219,7 @@
             variant="outlined"></v-text-field>
         </v-col>
         <v-col
-          class=" "
+          class="py-0"
           cols="12"
           :md="3">
           <v-text-field
@@ -234,7 +231,7 @@
             variant="outlined"></v-text-field>
         </v-col>
         <v-col
-          class=" "
+          class="py-0"
           cols="12"
           :md="3">
           <v-text-field
@@ -245,8 +242,9 @@
             @input="formatarData(experiencia, 'entrada')"
             :rules="[validarData(experiencia.entrada)]"></v-text-field>
         </v-col>
+
         <v-col
-          class=" "
+          class="py-0"
           cols="12"
           :md="3">
           <v-text-field
@@ -304,7 +302,7 @@
             maxlength="40"
             v-model="item.escolaridade"
             @input="atualizarDados"
-            label="Escolaridade"
+            label="Curso"
             variant="outlined"></v-text-field>
         </v-col>
         <v-col
@@ -360,11 +358,11 @@
       };
     },
 
-    // mounted() {
-    //   this.atualizarDados();
-    // },
-
     methods: {
+      empresaAtual(index) {
+        this.items.experiencias[index].saida = "Atual";
+      },
+
       atualizarDados() {
         this.$emit("atualizarDados", this.items);
       },
@@ -418,7 +416,7 @@
 
       validarData(data) {
         if (!/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/.test(data)) {
-          return "A data deve estar no formato dd/mm/yyyy";
+          return;
         }
         return true;
       },
