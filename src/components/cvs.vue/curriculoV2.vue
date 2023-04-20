@@ -27,15 +27,15 @@
         {{ dadosCv.endereco.cidade }}
         {{ dadosCv.endereco.cidade ? "-" : "" }}
         {{ dadosCv.endereco.estado }}
-        <v-icon class="icons">mdi-map-marker</v-icon>
+        <v-icon class="icons">mdi-map-marker-radius-outline </v-icon>
       </span>
-      <span class="pa-0 d-block">
+      <span class="pa-0 d-block mt-2">
         {{ dadosCv.contato.email }}
-        <v-icon class="icons">mdi-email</v-icon>
+        <v-icon class="icons">mdi-email-outline </v-icon>
       </span>
-      <span class="pa-0 d-block">
-        {{ dadosCv.contato.telefone
-        }}<v-icon class="icons">mdi-phone-classic </v-icon>
+      <span class="pa-0 d-block mt-2">
+        {{ dadosCv.contato.telefone }}
+        <v-icon class="icons">mdi-whatsapp </v-icon>
       </span>
     </v-col>
 
@@ -49,7 +49,7 @@
     <v-col
       cols="9"
       class="pa-0 ma-2 mx-auto">
-      <h3>Objetivo</h3>
+      <h3>Qualificação Profissional</h3>
       <p>{{ dadosCv.objetivo }}</p>
     </v-col>
 

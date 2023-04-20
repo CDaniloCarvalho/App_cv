@@ -3,10 +3,20 @@
     v-if="!templateA && !templateB"
     class="container rounded py-4">
     <div
-      class="mx-5 text-left cursor-pointer visualizar"
+      class="mx-5 text-left cursor-pointer"
       color="grey"
       @click="preVisualizar()">
-      <v-icon class="icons">mdi-magnify-plus-outline</v-icon> Pré-visualizar
+      <v-btn
+        prepend-icon="mdi-magnify-plus-outline"
+        class="btn-comecar text-black mx-5 text-left cursor-pointer"
+        height="48"
+        variant="outlined"
+        @click="preVisualizar()">
+        <template v-slot:prepend>
+          <v-icon size="30"></v-icon>
+        </template>
+        <span>Pré-visualizar</span>
+      </v-btn>
     </div>
 
     <FormCv
@@ -108,12 +118,12 @@
         templateA: false,
         templateB: false,
         dadosCv: {
-          nome: "Leonardo	Cavalcanti silva",
-          areaAtuacao: "Analista Desenvolvedor",
+          nome: "Leonardo	Cavalcanti",
+          areaAtuacao: "Auxiliar Administrativo",
           objetivo:
-            "Sou um desenvolvedor apaixonado por tecnologia, com experiência em JavaScript, Vue.js, Node.js, HTML e CSS. Tenho como objetivo aplicar meu conhecimento e habilidades em projetos desafiadores, contribuindo para o desenvolvimento de soluções inovadoras e impactantes. Busco oportunidades que me permitam crescer profissionalmente e aprender",
+            "Meu principal objetivo é uma oportunidade, onde possa mostrar minhas habilidades, aplicar tudo que já aprendi e continuar evoluindo profissionalmente.",
           contato: {
-            email: "meu_email.dev@dev.com.br",
+            email: "meu_email.adm@adm.com.br",
             telefone: "(11) 94983-7353",
           },
           endereco: {
@@ -126,39 +136,41 @@
           experiencias: [
             {
               identificacao: 1,
-              cargo: "Desenvolvedor Full Stack",
+              cargo: "Auxiliar Financeiro / Administrativo",
               empresa: "ABC",
               entrada: "01/12/2020",
-              saida: "Presente",
+              saida: "20/10/2022",
               responsabilidades:
-                "Site da empresa desenvolvido e mantido usando Vue.js e Node.js,Design responsivo implementado usando HTML/CSS, Integrado com várias APIs de terceiros para processamento de pagamentos e email marketing",
+                " Responsável pelo controle de receitas e despesas e pelo gerenciamento das tarefas de rotina essenciais ao funcionamento de qualquer organização, como emissão de documentos, atualização de cadastro e atendimento a fornecedores e clientes",
             },
             {
               identificacao: 2,
-              cargo: "Desenvolvedor Júnior",
+              cargo: "Assistente Administrativo",
               empresa: "XYZ",
               entrada: "05/10/2018",
               saida: "12/05/2019",
               responsabilidades:
-                "Site da empresa desenvolvido e mantido usando Vue.js e Node.js,Design responsivo implementado usando HTML/CSS, Integrado com várias APIs de terceiros para processamento de pagamentos e email marketing",
+                "Recebimento e envio de documentos, controle de contas, elaboração de relatórios, emissão de notas fiscais e atualização de arquivos e cadastros",
             },
           ],
           educacao: [
             {
               identificacao: 1,
-              escolaridade: "Bacharel em Ciência da Computação",
-              instituicao: "Universidade de XYZ",
-              inicio: "05/10/2015",
-              termino: "02/01/2019",
-              descrição: "Graduado com distinção",
+              escolaridade: "Graduado em Administração",
+              instituicao: "Universidade de São paulo",
+              inicio: "05/02/2015",
+              termino: "30/11/2019",
+              descrição:
+                "Abordagem de temas como: planejamento e organizar e gerenciar o uso dos recursos pessoais e financeiros de uma organização, elaborar estratégias para melhorar o desempenho da empresa, maximizar os lucros, evitar desperdícios e reduzir custos",
             },
             {
               identificacao: 2,
-              escolaridade: "Bacharel em Ciência da Computação",
-              instituicao: "Universidade de XYZ",
-              inicio: "10/10/2010",
-              termino: "15/08/2014",
-              descrição: "Graduado com distinção",
+              escolaridade: "Técnico Administrativo",
+              instituicao: "Escola Técnica",
+              inicio: "10/08/2010",
+              termino: "30/06/2012",
+              descrição:
+                "Realizei atividades de apoio administrativo, organização de arquivos, elaboração de documentos e planilhas.",
             },
           ],
           foto: "",
@@ -245,18 +257,6 @@
 
   .cursor-pointer {
     cursor: pointer;
-  }
-
-  .visualizar {
-    color: black;
-    width: 140px;
-  }
-
-  .visualizar:hover {
-    color: rgb(96, 101, 130);
-    background-color: rgba(96, 101, 130, 0.116);
-    font-size: 17px;
-    border-radius: 5px;
   }
 
   .close {
