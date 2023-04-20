@@ -168,7 +168,7 @@
       <v-textarea
         v-model="items.objetivo"
         @input="atualizarDados"
-        label="Objetivo"
+        label="Qualificação Profissional"
         variant="outlined"
         rows="2"
         :counter="340"
@@ -195,7 +195,7 @@
           cols="12"
           md="12"
           :sm="12"
-          class="py-0 mb-3 d-flex text-left">
+          class="py-0 d-flex text-left">
           <h3>{{ `Empresa ${experiencia.identificacao}` }}</h3>
         </v-col>
         <v-col

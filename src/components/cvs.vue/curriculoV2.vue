@@ -17,7 +17,7 @@
       cols="7"
       :height="90"
       class="pa-0 mt-8 pt-15 text-end pe-15">
-      <h2 class="pa-0 py-0">{{ dadosCv.nome.toUpperCase() }}</h2>
+      <h2 class="pa-0 py-0 mb-2">{{ dadosCv.nome.toUpperCase() }}</h2>
       <span class="pa-0">
         {{ dadosCv.endereco.rua }}{{ dadosCv.endereco.rua ? "," : "" }}
         {{ dadosCv.endereco.numero }}

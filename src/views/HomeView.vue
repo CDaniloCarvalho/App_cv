@@ -1,5 +1,5 @@
 <template>
-  <div class="home rounded">
+  <div class="home rounded mt-6 ">
     <v-row>
       <v-col
         cols="12"
