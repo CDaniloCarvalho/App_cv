@@ -121,7 +121,7 @@
           nome: "Leonardo	Cavalcanti",
           areaAtuacao: "Auxiliar Administrativo",
           objetivo:
-            "Meu principal objetivo é uma oportunidade, onde possa mostrar minhas habilidades, aplicar tudo que já aprendi e continuar evoluindo profissionalmente.",
+            "Assistência nos processos rotineiros da área administrativa. Auxílio na organização de arquivos de funcionários. Controle de entrada e saída de correspondências dos setores. Elaboração de planilhas e relatórios mensais gerenciais.",
           contato: {
             email: "meu_email.adm@adm.com.br",
             telefone: "(11) 94983-7353",
